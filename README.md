@@ -1,5 +1,6 @@
 # AtSWEET13_DMS
-# READ THIS FILE IN THE RAW FORMAT OR IN A TEXT EDITOR (like Sublime Text)
+# Read this file by displaying the source blob
+# or in the raw format/in a text editor (like Sublime Text)
 Python code used for PyRosetta calculations and the development, validation, and testing of machine learning models is included in this repository location.
 
 Files belonging to phylogenetic analyses and structural bioinformatics were uploaded to Box due to size restrictions.
