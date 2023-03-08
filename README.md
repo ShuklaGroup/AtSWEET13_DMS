@@ -6,7 +6,7 @@ Python code used for PyRosetta calculations and the development, validation, and
 Files belonging to phylogenetic analyses and structural bioinformatics were uploaded to Box due to size restrictions.
 
 The Box link can be found at:
-LINK HERE
+https://uofi.box.com/s/d8f9vllkh9s17uwvyr4ldu156jtbof1s
 
 A tree architecture for the entire github/Box directory is depicted below:
 
