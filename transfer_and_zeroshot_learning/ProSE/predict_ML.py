@@ -25,7 +25,7 @@ test_x = pca.transform(test_x)
 print(sum(pca.explained_variance_ratio_)) 
 
 ####SVM
-svm_model = svm.SVR(C = C_, kernel=kernel_)   #SVM for regression
+svm_model = svm.SVR(C = C_, kernel=kernel_)  
 svm_model.fit(x, y) 
 y_pred_SVM = svm_model.predict(test_x)
 print(y_pred_SVM)

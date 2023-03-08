@@ -53,7 +53,7 @@ for C_ in hyper_para_C:
          #print(spearman_list)
          metrics = {'Kernel': kernel_, 'C': C_,'r2': np.mean(r2_list), 'RMSE': np.mean(RMSE_list), 'spearman_correlation': np.mean(spearman_list), 'pearson_correlation': np.mean(pearson_list)}
          print(metrics)
-         with open('CV_results/SVM/SERT_ESM1b_SVM_C' + str(C_) +'_kernel_' + str(kernel_) +'.pkl', 'wb') as f:
+         with open('CV_results/SVM/MPTherm_prose_SVM_C' + str(C_) +'_kernel_' + str(kernel_) +'.pkl', 'wb') as f:
               pickle.dump(metrics, f)
 
 
