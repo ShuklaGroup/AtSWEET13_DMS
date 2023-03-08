@@ -8,7 +8,7 @@ The script 'train_ML_SVM.py' is used for hyperparamter optimization for SVM by c
 
 The script 'train_ML_RF.py' is used for hyperparamter optimization for RF by cross validation
 
-The script 'train_ML_MLP.py' is used for hyperparamter optimization for MLP by cross validation
+The script 'train_sklearn_MLP_prose.py' is used for hyperparamter optimization for MLP by cross validation
 
 All the hyperparameter optimization results of thress models are saved in the './CV_results folder'
 
