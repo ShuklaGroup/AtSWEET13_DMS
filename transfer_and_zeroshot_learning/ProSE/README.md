@@ -1,14 +1,20 @@
 # Using ProSE Language model embeddings to predict variant effects
+## Dependencies:
+* esm: https://github.com/facebookresearch/esm
+* numpy 1.18.5
+* pandas 1.0.5
+* sklearn 0.23.1
+
 
 ## Data
 The MPTherm dataset and AtSW13_TM4_muts dataset are in the './data' folder, including: ProSE embeddings, labels (delta Tm), and fasta file (protein sequences)
 
 ## Hyperparameter optimization
-The script 'train_ML_SVM.py' is used for hyperparamter optimization for SVM by cross validation
+* The script 'train_ML_SVM.py' is used for hyperparamter optimization for SVM by cross validation
 
-The script 'train_ML_RF.py' is used for hyperparamter optimization for RF by cross validation
+* The script 'train_ML_RF.py' is used for hyperparamter optimization for RF by cross validation
 
-The script 'train_sklearn_MLP_prose.py' is used for hyperparamter optimization for MLP by cross validation
+* The script 'train_sklearn_MLP_prose.py' is used for hyperparamter optimization for MLP by cross validation
 
 All the hyperparameter optimization results of thress models are saved in the './CV_results folder'
 
