@@ -1,4 +1,4 @@
-## install and perform ProSE embeddings
+## Install and perform ProSE embeddings
 
 Input files for ProSE embeddings are AtSW13_TM4_muts.fa and MPTherm_database.fa .
 
