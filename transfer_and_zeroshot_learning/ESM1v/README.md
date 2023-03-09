@@ -1,7 +1,7 @@
 # Zero-shot variant prediction with ESM1v
 
 ## Predict the effects of mutants using an ensemble of five ESM1v models
-script.sh
+'script.sh'
 
 'AtSWEET13_DMS_muts_labeled.csv' is the predicted score by ESM1v models
 
