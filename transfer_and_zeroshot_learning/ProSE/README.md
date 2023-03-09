@@ -1,6 +1,6 @@
 # Using ProSE Language model embeddings to predict variant effects
 
-## Data:
+## Data
 The MPTherm dataset and AtSW13_TM4_muts dataset is in the './data' folder, including: ProSE embeddings, labels (delta Tm), and fasta file (protein sequences)
 
 ## Hyperparameter optimization
