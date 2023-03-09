@@ -14,7 +14,7 @@ Once installation is done, perform the ProSE embedding as follows:
 
 	`python embed_sequences.py --pool avg -o output.h5 input.fa`
 
-   One can type python embed_sequences.py --help for more options. Default model is prose_mt .
+   One can type `python embed_sequences.py --help` for more options. Default model is `prose_mt` .
 
 3. The output file is in .h5 format. You can convert parts of the .h5 file into a .npy array 
 with the embedding valus as follows:
