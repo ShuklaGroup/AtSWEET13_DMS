@@ -10,6 +10,7 @@ https://uofi.box.com/s/d8f9vllkh9s17uwvyr4ldu156jtbof1s
 
 A tree architecture for the entire github/Box directory is depicted below:
 
+```
 .
 |____SWEET_phylogeny
 | |____msas
@@ -75,3 +76,4 @@ A tree architecture for the entire github/Box directory is depicted below:
   |
   |____ProSE
     |____ # contains all code and inputs for transfer learning using ProSE embeddings
+```
