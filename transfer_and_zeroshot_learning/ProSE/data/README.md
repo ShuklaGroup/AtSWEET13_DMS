@@ -12,7 +12,7 @@ Once installation is done, perform the ProSE embedding as follows:
 1. Prepare your sequences in a single fasta file (with .fa extension, NOT .fasta)
 2. Use the embed_sequences file:
 
-	python embed_sequences.py --pool avg -o output.h5 input.fa
+	`python embed_sequences.py --pool avg -o output.h5 input.fa`
 
    One can type python embed_sequences.py --help for more options. Default model is prose_mt .
 
