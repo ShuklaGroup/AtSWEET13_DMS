@@ -19,7 +19,7 @@ Once installation is done, perform the ProSE embedding as follows:
 3. The output file is in .h5 format. You can convert parts of the .h5 file into a .npy array 
 with the embedding valus as follows:
 
-	## install h5py
+	```## install h5py
 	## https://docs.h5py.org/en/stable/build.html
 	import h5py
 	import numpy as np
@@ -37,4 +37,4 @@ with the embedding valus as follows:
 	data_array = (file['Q9FGQ2_WT'])[()] #this creates a numpy array
 
 	# save array as .npy file
-	np.save('example.npy', data_array)
+	np.save('example.npy', data_array)```
