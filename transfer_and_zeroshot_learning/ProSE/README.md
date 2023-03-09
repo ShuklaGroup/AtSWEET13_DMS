@@ -1,7 +1,7 @@
 # Using ProSE Language model embeddings to predict variant effects
 
 ## Data
-The MPTherm dataset and AtSW13_TM4_muts dataset is in the './data' folder, including: ProSE embeddings, labels (delta Tm), and fasta file (protein sequences)
+The MPTherm dataset and AtSW13_TM4_muts dataset are in the './data' folder, including: ProSE embeddings, labels (delta Tm), and fasta file (protein sequences)
 
 ## Hyperparameter optimization
 The script 'train_ML_SVM.py' is used for hyperparamter optimization for SVM by cross validation
