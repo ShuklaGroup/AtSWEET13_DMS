@@ -1,13 +1,18 @@
 # Using ProSE Language model embeddings to predict variant effects
-## Dependencies:
+## Dependencies
 * esm: https://github.com/facebookresearch/esm
+* python 3.8.3
 * numpy 1.18.5
 * pandas 1.0.5
 * sklearn 0.23.1
+* spicy 1.5.0
 
 
 ## Data
-The MPTherm dataset and AtSW13_TM4_muts dataset are in the './data' folder, including: ProSE embeddings, labels (delta Tm), and fasta file (protein sequences)
+The MPTherm dataset and AtSW13_TM4_muts dataset are in the './data' folder, including: 
+* ProSE embeddings
+* labels (delta Tm)
+* fasta file (protein sequences)
 
 ## Hyperparameter optimization
 * The script 'train_ML_SVM.py' is used for hyperparamter optimization for SVM by cross validation
