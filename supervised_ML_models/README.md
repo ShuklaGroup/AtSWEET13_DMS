@@ -1,77 +1,101 @@
-# AtSWEET13_DMS
-Python code used for PyRosetta calculations and the development, validation, and testing of machine learning models is included in this repository location.
+# AtSWEET13 DMS Modeling with Supervised Regressors
+Compilation of ML work done in 2026 for the '<i>Engineering Arabidopsis SWEET13 transporter with
+enhanced and selective sucrose uptake</i>' manuscript
 
-Files belonging to phylogenetic analyses and structural bioinformatics were uploaded to Box due to size restrictions.
-
-The Box link can be found at:
-https://uofi.box.com/s/d8f9vllkh9s17uwvyr4ldu156jtbof1s
-
-A tree architecture for the entire github/Box directory is depicted below:
-
+## Preparing DMS Data for Modeling
+Kermut, and its dependencies (packages and models) were installed by cloning the [Official Repository](https://github.com/petergroth/kermut.git) for their NeurIPS 2024 Paper ([Kermut: Composite kernel regression for protein variant effects](https://www.proceedings.com/content/079/079017-0929open.pdf), and by following its installation guidelines. Its <b>'Reproducibility</b>, <b>'Installation</b>', and <b>'Data access'</b> sections will need to be followed to set up Kermut. Our AtSWEET13 DMS data can be encoded using the following command - 
+```py 
+python -m kermut.cmdline.preprocess_data.extract_esm2_embeddings \
+    dataset=single \
+    dataset.single.use_id=true \
+    dataset.single.id=SWEET13  # or SWEET13_TM4 if only modeling TM4 transmembrane helix
 ```
-.
-|____SWEET_phylogeny
-| |____msas
-| | |____ # Multiple sequence alignments for PF03083 sequences
-| | 
-| |____maximum_likelihood_tree
-| | |____ # Contains maximum likelihood tree for bootstrapping from RAxML
-| | 
-| |____bootstrapped_tree
-| | |____ # Contains bootstrapped tree from IQ-TREE, along with additional analyses
-| | 
-| |____raw_fastas
-|   |____ # PF03083 Clade 1 SWEET sequences and STREME motif analysis
-|   | 
-|   |____ # PF03083 Clade 2 SWEET sequences and STREME motif analysis
-|   | 
-|   |____ # PF03083 Clade 3 SWEET sequences and STREME motif analysis
-|   | 
-|   |____ # PF03083 Clade 4 SWEET sequences and STREME motif analysis
-|   | 
-|   |____ predicted_structures_TM4
-|   | |____ # Contains predicted structures for representative clade sequences, along with cataloged TM4 contacts.
-|   | 
-|   |____ TM4_substitution_analysis
-|     |____ # Contains STREME motif probabilities and analysis scripts/calculations used per clade
-| 
-|____dimensionality_reduction
-| |____ # Contains AtSWEET13 DMS data and a Jupyter notebook for applying dimensionality reduction
-| 
-|____in_silico_dms
-| |____candidate_pdbs
-| | |____ # Potential PDBs obtained from https://doi.org/10.1101/2022.10.12.511964 for analysis
-| | 
-| |____S1_PDB84
-| | |____ # Results for RosettaMP, PoPMuSiC, and mCSM ddG calculations on candidate PDB
-| | 
-| |____S2_PDB28
-| | |____ # Results for RosettaMP, PoPMuSiC, and mCSM ddG calculations on candidate PDB
-| | 
-| |____S3_PDB55
-| | |____ # Results for RosettaMP, PoPMuSiC, and mCSM ddG calculations on candidate PDB
-| | 
-| |____S4_PDB6
-| | |____ # Results for RosettaMP, PoPMuSiC, and mCSM ddG calculations on candidate PDB
-| | 
-| |____S5_PDB52
-| | |____ # Results for RosettaMP, PoPMuSiC, and mCSM ddG calculations on candidate PDB
-| | 
-| |____S6_PDB31
-| | |____ # Results for RosettaMP, PoPMuSiC, and mCSM ddG calculations on candidate PDB
-| | 
-| |____csv_raw_results
-| | |____ # Raw tabulated results for RosettaMP, PoPMuSiC, and mCSM ddG calculations
-| | 
-| |____rescale_plotting
-|   |____ # Jupyter notebooks for heatmap generation
-|   |____ csvs
-|     |____ # contains all normalized and rescaled data from ddg/thermostability prediction software
-|
-|____transfer_and_zeroshot_learning
-  |____ESM1v
-  | |____ # contains all code and inputs for ESM1v zero shot prediction
-  |
-  |____ProSE
-    |____ # contains all code and inputs for transfer learning using ProSE embeddings
+### Working Local Environment used to Train and Evaluate Kermut and Tree-based Models  
+```
+conda env create -f environment.yml
+conda activate sweetml
+```
+
+### Installation of ProteinMPNN
+ProteinMPNN was installed by cloning their [Official Repository](https://github.com/dauparas/ProteinMPNN.git) ([Dauparas, J., et al. (2022) Science](https://www.science.org/doi/10.1126/science.add2187)) and following its instructions to set up the environment required to use the model for embedding.
+
+### Make Data Cross-Validation Folds
+The mutants can be divided into folds for more rigorous evaluation and minimal data leakage by running the below script (replace paths with local paths to DMS data and output folders) -
+```
+cd kermut
+```
+```py
+python make_folds.py \
+--base data/cv_folds_singles_substitutions/SWEET13/fold_random_5 \
+--data data/sweet/SWEET13_full.csv
+```
+Our DMS CSV file, wild-type sequence file, and PDB crystal structure file are provided as shown below-
+```text
+./AtSWEET13_DMS_full_reconstructed.csv
+./kermut
+    └── data
+        ├── AtSWEET13_TM4.csv
+        ├── conditional_probs
+        │   └── ProteinMPNN
+        │       ├── SWEET13.npy
+        │       └── SWEET13_TM4.npy
+        ├── cv_folds_singles_substitutions
+        │   └── SWEET13
+        │       └── fold_random_5
+        │           ├── test_fold_0.csv
+        │           ├── test_fold_1.csv
+        │           ├── test_fold_2.csv
+        │           ├── test_fold_3.csv
+        │           ├── test_fold_4.csv
+        │           ├── train_fold_0.csv
+        │           ├── train_fold_1.csv
+        │           ├── train_fold_2.csv
+        │           ├── train_fold_3.csv
+        │           └── train_fold_4.csv
+        ├── structures
+        │   ├── coords
+        │   │   ├── SWEET13.npy
+        │   │   └── SWEET13_TM4.npy
+        │   └── pdbs
+        │       └── Q9FGQ2.pdb
+        └── sweet
+            ├── data.csv
+            ├── sequence.fasta
+            ├── SWEET13_full.csv
+            └── SWEET13.pdb
+```
+## Run Kermut on AtSWEET13 Data
+```py
+python proteingym_benchmark.py --multirun \
+dataset=single \
+single.use_id=true \
+single.id=SWEET13 \
+cv_scheme=fold_random_5,fold_modulo_5,fold_contiguous_5 \
+kernel=kermut
+```
+```py
+python proteingym_benchmark.py \
+dataset=single \
+single.use_id=true \
+single.id=SWEET13_TM4 \
+cv_scheme=fold_random_5 \
+kernel=kermut
+```
+### Evaluate Performance of Kermut
+```py
+python -m kermut.cmdline.process_results.process_model_scores \
+dataset=single \
+single.use_id=true \
+single.id=SWEET13  # or SWEET13_TM4
+```
+## Train and evaluate LightGBM, XGBoost, and CatBoost models with AtSWEEt13 Data
+
+```py
+python xgb_ablation.py
+```
+```py
+python lgb_ablation.py
+```
+```py
+python cat_ablation.py
 ```
